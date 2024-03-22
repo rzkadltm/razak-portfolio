@@ -76,7 +76,7 @@ Some pages require fetching external data for pre-rendering. There are two scena
 
 **Example**: Your blog page might need to fetch the list of blog posts from a CMS (content management system).
 
-<!-- ```js
+```js
 // TODO: Need to fetch `posts` (by calling some API endpoint)
 //       before this page can be pre-rendered.
 function Blog({ posts }) {
@@ -90,11 +90,11 @@ function Blog({ posts }) {
 }
 
 export default Blog
-``` -->
+```
 
 To fetch this data on pre-render, Next.js allows you to `export` an `async` function called `getStaticProps` from the same file. This function gets called at build time and lets you pass fetched data to the page's `props` on pre-render.
 
-<!-- ```js
+```js
 function Blog({ posts }) {
   // Render posts...
 }
@@ -115,7 +115,7 @@ export async function getStaticProps() {
 }
 
 export default Blog
-``` -->
+```
 
 To learn more about how `getStaticProps` works, check out the [Data Fetching documentation](/docs/basic-features/data-fetching.md#getstaticprops-static-generation).
 
@@ -133,7 +133,7 @@ Later, you might add the second post with `id: 2`. Then you'd want to pre-render
 
 So your page **paths** that are pre-rendered depend on external data**.** To handle this, Next.js lets you `export` an `async` function called `getStaticPaths` from a dynamic page (`pages/posts/[id].js` in this case). This function gets called at build time and lets you specify which paths you want to pre-render.
 
-<!-- ```js
+```js
 // This function gets called at build time
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
@@ -149,11 +149,11 @@ export async function getStaticPaths() {
   // { fallback: false } means other routes should 404.
   return { paths, fallback: false }
 }
-``` -->
+```
 
 Also in `pages/posts/[id].js`, you need to export `getStaticProps` so that you can fetch the data about the post with this `id` and use it to pre-render the page:
 
-<!-- ```js
+```js
 function Post({ post }) {
   // Render post...
 }
@@ -174,7 +174,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default Post
-``` -->
+```
 
 To learn more about how `getStaticPaths` works, check out the [Data Fetching documentation](/docs/basic-features/data-fetching.md#getstaticpaths-static-generation).
 
